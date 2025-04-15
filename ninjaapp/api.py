@@ -1,37 +1,4 @@
-# from ninja import NinjaAPI
-# from pydantic import BaseModel
-# import asyncio
-# from .models import Greeting
-#
-# api = NinjaAPI()
-#
-# # Request schema remains the same.
-# class HelloRequest(BaseModel):
-#     name: str
-#
-# # Response schema remains the same.
-# class HelloResponse(BaseModel):
-#     message: str
-#
-# # Synchronous endpoint for reference.
-# @api.post("/hello", response=HelloResponse)
-# def say_hello(request, payload: HelloRequest):
-#     return HelloResponse(message=f"hello {payload.name}")
-#
-# # Asynchronous endpoint using 'async def'
-# @api.post("/hello_async", response=HelloResponse)
-# async def say_hello_async(request, payload: HelloRequest):
-#     await asyncio.sleep(5)  # Simulate a delay of 5 second
-#     return HelloResponse(message=f"hello {payload.name}")
-#
-# # Asynchronous endpoint using Django's async ORM
-# @api.post("/hello_async_save", response=HelloResponse)
-# async def hello_async_save(request, payload: HelloRequest):
-#     # Directly use the async ORM method to create a new record
-#     await asyncio.sleep(5)
-#     await Greeting.objects.acreate(name=payload.name)
-#     return HelloResponse(message=f"hello {payload.name} and saved to database")
-#
+
 from ninja import NinjaAPI
 from pydantic import BaseModel, HttpUrl
 from ninjaapp.tasks import process_order
@@ -65,6 +32,7 @@ async def hello_async_celery(request, payload: HelloRequest):
     message = await asyncio.to_thread(task_result.get, timeout=10)
 
     return HelloResponse(message=message)
+<<<<<<< HEAD
 
 
 # Define request schema
@@ -98,3 +66,5 @@ def get_order_status(request, order_id: int):
         return OrderResponse(message=message)
     except Order.DoesNotExist:
         return OrderResponse(message="Order not found")
+=======
+>>>>>>> 5736b9833295058e0565e95b6fbe8b3680fb55b0
